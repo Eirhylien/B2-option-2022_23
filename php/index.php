@@ -1,5 +1,5 @@
 <?php
-    require_once("connection.php");
+    require("CrudUser.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,22 +14,26 @@
 
 <body>
     <?php
-        $sqlQuery = "SELECT * FROM `ethan`";
-        $usersStatement = $pdo->prepare($sqlQuery);
-        $usersStatement->execute();
-        $users = $usersStatement->fetchAll();
 
-        echo "<table>";
-        echo "";
-        echo "</table>";
-
-        foreach ($users as $user) {
+    echo test();
+    $users=GetUsers();
+    foreach ($users as $user) {
             ?>
 
-    <p>Utilisateur: <?php echo $user['name']. " " .$user['libelle']; ?></p>
+    <p>Utilisateur: <?php echo $user['nom']. " " .$user['prenom']; ?></p>
 
     <?php
         }
+    $newUserArr = array("email"=>"testInsert", "nom"=>"marc", "prenom"=>"balavoine","username"=>"balmar","mdp"=>"test3","etablissement"=>"false");
+    $newUser=(object)$newUserArr;
+    InsertUser($newUser);
+    $id=2;
+    UpdateUser($id,$newUser);
+    $idd=1;
+    DeleteUser($idd);
+
+
+    
     ?>
 </body>
 
