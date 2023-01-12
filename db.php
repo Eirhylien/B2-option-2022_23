@@ -1,8 +1,8 @@
 <?php
 
-    function connexion($servename, $username, $password, $dbname) {
+    function connexion($servername, $username, $password, $dbname) {
         try {
-            $db = new PDO('mysql:host='. $servename .';dbname='. $dbname .';charset=utf8', $username, $password);
+            $db = new PDO('mysql:host='. $servername .';dbname='. $dbname .';charset=utf8', $username, $password);
             return $db;
         } catch (PDOException $e) {
             print "Erreur: " . $e->getMessage() . "<br/>";
@@ -45,7 +45,6 @@
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            echo "<script>console.log('good');</script>";
         }
         
         public function updateUser($id,$user){
