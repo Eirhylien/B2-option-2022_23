@@ -21,20 +21,6 @@ SET time_zone = "+00:00";
 -- Base de données : `OptionDev`
 --
 
--- --------------------------------------------------------
-
---
--- Structure de la table `Adherent`
---
-
-CREATE TABLE `Adherent` (
-  `User_id` int(50) NOT NULL,
-  `id` int(50) NOT NULL,
-  `Nom` varchar(15) NOT NULL,
-  `Prenom` varchar(15) NOT NULL,
-  `Email` varchar(25) NOT NULL,
-  `Tel` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -85,13 +71,6 @@ CREATE TABLE `User` (
 --
 
 --
--- Index pour la table `Adherent`
---
-ALTER TABLE `Adherent`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `User_id` (`User_id`);
-
---
 -- Index pour la table `FDJ`
 --
 ALTER TABLE `FDJ`
@@ -115,11 +94,6 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
---
--- AUTO_INCREMENT pour la table `Adherent`
---
-ALTER TABLE `Adherent`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `FDJ`
