@@ -15,6 +15,16 @@ function GetUsers(){
     return $users;
 }
 
+function GetUsersById($id){
+    global $pdo;
+    $sqlQuery = "SELECT * FROM `user` WHERE user.id=$id";
+    $usersStatement = $pdo->prepare($sqlQuery);
+    $usersStatement->execute();
+    $user = $usersStatement->fetchAll();
+
+    return $user;
+}
+
 function InsertUser($user){
     global $pdo;
     $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('$user->email','$user->nom','$user->prenom','$user->username','$user->mdp',$user->etablissement)";
