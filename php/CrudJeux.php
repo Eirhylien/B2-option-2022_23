@@ -1,6 +1,6 @@
 <?php
 require("connection.php");
-
+require("CrudFDJ.php");
 
 //here, $user = id of the user
 // $id = id of the game
