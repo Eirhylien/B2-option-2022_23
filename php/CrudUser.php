@@ -1,23 +1,5 @@
 <?php
-//require("connection.php");
-$port = '3308';
-$host = '127.0.0.1';
-$dbname = 'ludotechalea';
-$test='test';
-$dsn = 'mysql:host='.$host.';dbname='.$dbname.';port='.$port.';charset=utf8mb4';
-    try {
-        global $dsn;
-        $pdo = new PDO($dsn, 'youenn' , '56QwXpdmU=');
-        echo "<script>console.log('test try' );</script>";
-        
-    }
-    catch (PDOException $exception) {
-         
-        echo($exception->getMessage());
-         
-    }
-    echo "<script>console.log('Debug Objects: good' );</script>";
-
+require("connection.php");
 
 function test(){
     global $test;
@@ -39,7 +21,6 @@ function InsertUser($user){
     echo "<script>console.log('".$sqlQuery."');</script>";
     $usersStatement = $pdo->prepare($sqlQuery);
     $usersStatement->execute();
-    $users = $usersStatement->fetchAll();
     echo "<script>console.log('good');</script>";
 }
 
