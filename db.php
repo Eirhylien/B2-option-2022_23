@@ -1,8 +1,8 @@
 <?php
 
-    function connexion($servename, $username, $password, $dbname) {
+    function connexion($servername, $username, $password, $dbname) {
         try {
-            $db = new PDO('mysql:host='. $servename .';dbname='. $dbname .';charset=utf8', $username, $password);
+            $db = new PDO('mysql:host='. $servername .';dbname='. $dbname .';charset=utf8', $username, $password);
             return $db;
         } catch (PDOException $e) {
             print "Erreur: " . $e->getMessage() . "<br/>";
@@ -15,6 +15,7 @@
         private $connexiondb;
 
         public function __construct() {
+
             $this->connexiondb = connexion("localhost", "users", "x.M.9O/zAOXFQWMA", "ludotecharea");
         }
 
@@ -41,7 +42,6 @@
             $sqlQuery = "INSERT INTO User (Nom, Prenom, Username, Email, Mdp, Etablissement) VALUES ('$user->Nom', '$user->Prenom', '$user->Username', '$user->Email', '$user->Mdp', '$user->Etablissement')";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            // return $usersStatement->fetchAll();
         }
 
         public function updateUser($id, $user) {
