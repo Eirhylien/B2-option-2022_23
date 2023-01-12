@@ -6,7 +6,7 @@ require("CrudFDJ.php");
 // $id = id of the game
 function GetJeuxByUser($user){
     global $pdo;
-    $sqlQuery = "SELECT id,dispo,etat FROM `jeux`,`user` WHERE user.id=$user";
+    $sqlQuery = "SELECT id,dispo,etat,remarque FROM `jeux`,`user` WHERE user.id=$user";
     $usersStatement = $pdo->prepare($sqlQuery);
     $usersStatement->execute();
     $jeux = $usersStatement->fetchAll();
@@ -14,7 +14,7 @@ function GetJeuxByUser($user){
     return $jeux;
 }
 
-function InsertJeux($user,$nom,$etat,$dispo){
+function InsertJeux($user,$nom,$etat,$dispo,$remarque){
     global $pdo;
     $ListeFDJs = getFdj();
     foreach ($ListeFDJs as $ListeFDJ) {
@@ -22,16 +22,16 @@ function InsertJeux($user,$nom,$etat,$dispo){
             $fdjId=$ListeFDJ['id'];
         }
     }
-    $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat) VALUES ('$fdjId','$user',$dispo,'$etat')";
+    $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('$fdjId','$user',$dispo,'$etat','$remarque')";
     echo "<script>console.log('".$sqlQuery."');</script>";
     $usersStatement = $pdo->prepare($sqlQuery);
     $usersStatement->execute();
     echo "<script>console.log('good');</script>";
 }
 
-function UpdateJeux($id,$dispo,$etat){
+function UpdateJeux($id,$dispo,$etat,$remarque){
     global $pdo;
-    $sqlQuery = "UPDATE jeux SET `dispo`=$dispo,`etat`='$etat' WHERE jeux.id=$id ";
+    $sqlQuery = "UPDATE jeux SET `dispo`=$dispo,`etat`='$etat',`remarque`=$remarque WHERE jeux.id=$id ";
     echo "<script>console.log('".$sqlQuery."');</script>";
     $usersStatement = $pdo->prepare($sqlQuery);
     $usersStatement->execute();
