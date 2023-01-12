@@ -39,6 +39,20 @@
         
             return $user;
         }
+
+        public function isAdmin($id){
+            $sqlQuery = "SELECT `admin` FROM `user` WHERE user.id=$is";
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $user = $usersStatement->fetchAll();
+            if ($user['admin']){
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
         
         public function insertUser($user){
             $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('$user->email','$user->nom','$user->prenom','$user->username','$user->mdp',$user->etablissement)";
