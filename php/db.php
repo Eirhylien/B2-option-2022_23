@@ -114,7 +114,7 @@
             $usersStatement->execute();
         }
         
-        public function deleteUser($id){
+        public function deleteJeux($id){
             $sqlQuery = "DELETE FROM `jeux` WHERE jeux.id=$id";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
