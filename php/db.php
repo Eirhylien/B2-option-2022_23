@@ -41,7 +41,7 @@
         }
 
         public function isAdmin($id){
-            $sqlQuery = "SELECT `admin` FROM `user` WHERE user.id=$is";
+            $sqlQuery = "SELECT `admin` FROM `user` WHERE user.id=$id";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $user = $usersStatement->fetchAll();
