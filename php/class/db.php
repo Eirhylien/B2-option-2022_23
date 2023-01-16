@@ -1,6 +1,7 @@
 <?php
     require_once("./class/User.php");
     require_once("./class/Jeux.php");
+    require_once("./class/FDJ.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
@@ -34,12 +35,13 @@
             if (sizeof($resultDB) > 0) {
                 foreach($resultDB as $user) {
                     $users = new User();
-                    $user->nom = $user['nom'];
-                    $user->prenom = $user['prenom'];
-                    $user->username = $user['username'];
-                    $user->email = $user['email'];
-                    $user->mdp = $user['mdp'];
-                    $user->etablissement = $user['etablissement'];
+                    $users->id = $user['id'];
+                    $users->nom = $user['nom'];
+                    $users->prenom = $user['prenom'];
+                    $users->username = $user['username'];
+                    $users->email = $user['email'];
+                    $users->mdp = $user['mdp'];
+                    $users->etablissement = $user['etablissement'];
                     array_push($listeUsersObjet,$users);
                 }
 
@@ -50,7 +52,7 @@
             }
         }
         
-        public function getUsersById($user){
+        public function getUserById($user){
             $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -177,9 +179,26 @@
             $sqlQuery = "SELECT `id`,`nom`,`description`,`date`,`img` FROM `fdj`";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $fdjs = $usersStatement->fetchAll();
-        
-            return $fdjs;
+            $resultDB = $usersStatement->fetchAll();
+            $listeFDJObjet=array();
+
+            if (sizeof($resultDB) > 0) {
+                foreach($resultDB as $fdj) {
+                    $fdjs = new FDJ();
+                    $fdjs->id = $fdj['id'];
+                    $fdjs->nom = $fdj['nom'];
+                    $fdjs->description = $fdj['description'];
+                    $fdjs->date = $fdj['date'];
+                    $fdjs->img = $fdj['img'];
+                    $fdjs->categories = $fdj['categories'];
+                    array_push($listeFDJObjet,$fdjs);
+                }
+
+                return $listeFDJObjet;
+            } else {
+
+                return "Erreur";
+            }
         }
 
         public function getFdjByJeux($jeux){
