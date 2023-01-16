@@ -28,9 +28,27 @@
             $sqlQuery = "SELECT * FROM `user`";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $users = $usersStatement->fetchAll();
-        
-            return $users;
+            $resultDB = $usersStatement->fetchAll();
+            $listeUsersObjet=array();
+
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $user) {
+                    $users = new User();
+                    $user->nom = $user['nom'];
+                    $user->prenom = $user['prenom'];
+                    $user->username = $user['username'];
+                    $user->email = $user['email'];
+                    $user->mdp = $user['mdp'];
+                    $user->etablissement = $user['etablissement'];
+                    array_push($listeUsersObjet,$users);
+                }
+
+                return $listeUsersObjet;
+            } else {
+
+                return "Erreur";
+            }
         }
         
         public function getUsersById($user){
