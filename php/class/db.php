@@ -121,6 +121,8 @@
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
+
+
             $listeJeuxObjet=array();
 
             //vérif taille résultat
@@ -144,7 +146,7 @@
         
         public function insertJeux($jeux,$user){
             $fdjId= $this->getFdjIDByJeuxName($jeux);
-            $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('$fdjId','".$user->id."',".$jeux->dispo.",'".$jeux->etat."','".$jeux->remarque."')";
+            $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('".$fdjId->id."','".$user->id."',".$jeux->dispo.",'".$jeux->etat."','".$jeux->remarque."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
