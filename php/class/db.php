@@ -1,5 +1,6 @@
 <?php
     require_once("./class/User.php");
+    require_once("./class/Jeux.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
@@ -98,18 +99,22 @@
 
 
         public function getJeuxByUser($user){
-            $sqlQuery = "SELECT * FROM `jeux`,`user` WHERE user.id=".$user->id;
+            $sqlQuery = "SELECT jeux.id,jeux.dispo,jeux.etat,jeux.remarque,jeux.user_id,jeux.fdj_id FROM `jeux`,`user` WHERE jeux.user_id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
         
             if (sizeof($resultDB) > 0) {
-                $user->remarque = $resultDB[0]['remarque'];
-                $user->etat = $resultDB[0]['etat'];
-                $user->dispo = $resultDB[0]['dispo'];
-                $user->user_id = $resultDB[0]['user_id'];
+                $jeux = new Jeux();
 
-                return $user;
+                foreach($jeux as $jeu) {
+                    $jeu->remarque = $resultDB[0]['remarque'];
+                    $jeu->etat = $resultDB[0]['etat'];
+                    $jeu->dispo = $resultDB[0]['dispo'];
+                    $jeu->user_id = $resultDB[0]['user_id'];
+                }
+
+                return $jeu;
             } else {
 
                 return "Erreur";
