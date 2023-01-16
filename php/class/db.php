@@ -1,4 +1,6 @@
 <?php
+    require_once("./class/User.php");
+    require_once("./class/Jeux.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
@@ -26,22 +28,52 @@
             $sqlQuery = "SELECT * FROM `user`";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $users = $usersStatement->fetchAll();
-        
-            return $users;
+            $resultDB = $usersStatement->fetchAll();
+            $listeUsersObjet=array();
+
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $user) {
+                    $users = new User();
+                    $user->nom = $user['nom'];
+                    $user->prenom = $user['prenom'];
+                    $user->username = $user['username'];
+                    $user->email = $user['email'];
+                    $user->mdp = $user['mdp'];
+                    $user->etablissement = $user['etablissement'];
+                    array_push($listeUsersObjet,$users);
+                }
+
+                return $listeUsersObjet;
+            } else {
+
+                return "Erreur";
+            }
         }
         
-        public function getUsersById($id){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.id=$id";
+        public function getUsersById($user){
+            $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $user = $usersStatement->fetchAll();
-        
-            return $user;
+            $resultDB = $usersStatement->fetchAll();
+
+            if (sizeof($resultDB) > 0) {
+                $user->nom = $resultDB[0]['nom'];
+                $user->prenom = $resultDB[0]['prenom'];
+                $user->username = $resultDB[0]['username'];
+                $user->email = $resultDB[0]['email'];
+                $user->mdp = $resultDB[0]['mdp'];
+                $user->etablissement = $resultDB[0]['etablissement'];
+
+                return $user;
+            } else {
+
+                return "Erreur";
+            }
         }
 
-        public function isAdmin($id){
-            $sqlQuery = "SELECT `admin` FROM `user` WHERE user.id=$id";
+        public function isAdmin($user){
+            $sqlQuery = "SELECT `admin` FROM `user` WHERE user.id=" . $user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $user = $usersStatement->fetchAll();
@@ -55,21 +87,21 @@
         }
         
         public function insertUser($user){
-            $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('$user->email','$user->nom','$user->prenom','$user->username','$user->mdp',$user->etablissement)";
+            $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('". $user->email ."','". $user->nom."','". $user->prenom."','". $user->username."','". $user->mdp."',". $user->etablissement.")";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function updateUser($id,$user){
-            $sqlQuery = "UPDATE user SET `email`='$user->email',`nom`='$user->nom',`prenom`='$user->prenom',`username`='$user->username',`mdp`='$user->mdp',`etablissement`=$user->etablissement WHERE user.id=$id ";
+        public function updateUser($user){
+            $sqlQuery = "UPDATE user SET `email`='".$user->email."',`nom`='".$user->nom."',`prenom`='".$user->prenom."',`username`='".$user->username."',`mdp`='".$user->mdp."',`etablissement`=".$user->etablissement." WHERE user.id=".$user->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteUser($id){
-            $sqlQuery = "DELETE FROM `user` WHERE user.id=$id";
+        public function deleteUser($user){
+            $sqlQuery = "DELETE FROM `user` WHERE user.id=". $user->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -85,37 +117,51 @@
 
 
         public function getJeuxByUser($user){
-            $sqlQuery = "SELECT id,dispo,etat,remarque FROM `jeux`,`user` WHERE user.id=$user";
+            $sqlQuery = "SELECT jeux.id,jeux.dispo,jeux.etat,jeux.remarque,jeux.user_id,jeux.fdj_id FROM `jeux`,`user` WHERE jeux.user_id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $jeux = $usersStatement->fetchAll();
-        
-            return $jeux;
+            $resultDB = $usersStatement->fetchAll();
+
+
+            $listeJeuxObjet=array();
+
+            //vérif taille résultat
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $jeu) {
+                    $jeux = new Jeux();
+                    $jeux->remarque = $jeu['remarque'];
+                    $jeux->etat =  $jeu['etat'];
+                    $jeux->dispo =  $jeu['dispo'];
+                    $jeux->user_id =  $jeu['user_id'];
+                    array_push($listeJeuxObjet,$jeux);
+                }
+
+                return $listeJeuxObjet;
+            } else {
+
+                return "Erreur";
+            }
         }
         
-        public function insertJeux($user,$nom,$etat,$dispo,$remarque){
-            $ListeFDJs = $this->getFdj();
-            foreach ($ListeFDJs as $ListeFDJ) {
-                if ($ListeFDJ['nom']==$nom){
-                    $fdjId=$ListeFDJ['id'];
-                }
-            }
-            $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('$fdjId','$user',$dispo,'$etat','$remarque')";
+        public function insertJeux($jeux,$user){
+            $fdjId= $this->getFdjIDByJeuxName($jeux);
+            $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('".$fdjId."','".$user->id."',".$jeux->dispo.",'".$jeux->etat."','".$jeux->remarque."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             echo "<script>console.log('good');</script>";
         }
         
-        public function updateJeux($id,$dispo,$etat,$remarque){
-            $sqlQuery = "UPDATE jeux SET `dispo`=$dispo,`etat`='$etat',`remarque`=$remarque WHERE jeux.id=$id ";
+        public function updateJeux($jeux){
+            $sqlQuery = "UPDATE jeux SET `dispo`=".$jeux->dispo.",`etat`='".$jeux->etat."',`remarque`=".$jeux->remarque." WHERE jeux.id=".$jeux->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteJeux($id){
-            $sqlQuery = "DELETE FROM `jeux` WHERE jeux.id=$id";
+        public function deleteJeux($jeux){
+            $sqlQuery = "DELETE FROM `jeux` WHERE jeux.id=".$jeux->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -129,31 +175,50 @@
 
 
         public function getFdj(){
-            $sqlQuery = "SELECT id,nom,`description`,`date`,`img` FROM `fdj`";
+            $sqlQuery = "SELECT `id`,`nom`,`description`,`date`,`img` FROM `fdj`";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $fdjs = $usersStatement->fetchAll();
         
             return $fdjs;
         }
+
+        public function getFdjByJeux($jeux){
+            $sqlQuery = "SELECT fdj.id,fdj.nom,fdp.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$jeux->id;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $fdjs = $usersStatement->fetchAll();
         
-        public function insertFdj($nom,$description,$date,$img){
-            $sqlQuery = "INSERT INTO fdj (nom,`description`,`date`,img) VALUES ('$nom','$description','$date','$img')";
+            return $fdjs;
+        }
+
+        public function getFdjIDByJeuxName($jeux){
+            $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $fdjs = $usersStatement->fetchAll();
+        
+            return $fdjs;
+        }
+
+        
+        public function insertFdj($fdj){
+            $sqlQuery = "INSERT INTO fdj (nom,`description`,`date`,img) VALUES ('".$fdj->nom."','".$fdj->description."','".$fdj->date."','".$fdj->img."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             echo "<script>console.log('good');</script>";
         }
         
-        public function updateFdj($id,$nom,$description,$date,$img){
-            $sqlQuery = "UPDATE fdj SET `nom`=$nom,`description`='$description',`date`='$date',`img`='$img' WHERE fdj.id=$id ";
+        public function updateFdj($fdj){
+            $sqlQuery = "UPDATE fdj SET `nom`='".$fdj->nom."',`description`='".$fdj->description."',`date`='".$fdj->date."',`img`='".$fdj->img."' WHERE fdj.id=".$fdj->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteFdj($id){
-            $sqlQuery = "DELETE FROM `fdj` WHERE fdj.id=$id";
+        public function deleteFdj($fdj){
+            $sqlQuery = "DELETE FROM `fdj` WHERE fdj.id=".$fdj->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -174,8 +239,8 @@
             return $ListeCategorie;
         }
         
-        public function getCategorieByName($nom){
-            $sqlQuery = "SELECT nom,id FROM `categorie` WHERE categorie.nom=$nom";
+        public function getCategorieByName($categorie){
+            $sqlQuery = "SELECT nom,id FROM `categorie` WHERE categorie.nom=".$categorie->nom;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $Categorie = $usersStatement->fetchAll();
@@ -183,8 +248,8 @@
             return $Categorie;
         }
         
-        public function getCategorieByID($id){
-            $sqlQuery = "SELECT nom,id FROM `categorie` WHERE categorie.id=$id";
+        public function getCategorieByID($categorie){
+            $sqlQuery = "SELECT nom,id FROM `categorie` WHERE categorie.id=".$categorie->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $Categorie = $usersStatement->fetchAll();
@@ -192,23 +257,23 @@
             return $Categorie;
         }
         
-        public function insertCategorie($nom){
-            $sqlQuery = "INSERT INTO `categorie` (nom) VALUES ('$nom')";
+        public function insertCategorie($categorie){
+            $sqlQuery = "INSERT INTO `categorie` (nom) VALUES ('".$categorie->nom."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             echo "<script>console.log('good');</script>";
         }
         
-        public function updateCategorie($id,$nom){
-            $sqlQuery = "UPDATE `categorie` SET `nom`='$nom' WHERE categorie.id=$id";
+        public function updateCategorie($categorie){
+            $sqlQuery = "UPDATE `categorie` SET `nom`='".$categorie->nom."' WHERE categorie.id=".$categorie->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteCategorie($id){
-            $sqlQuery = "DELETE FROM `categorie` WHERE categorie.id=$id";
+        public function deleteCategorie($categorie){
+            $sqlQuery = "DELETE FROM `categorie` WHERE categorie.id=".$categorie->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -233,8 +298,8 @@
             return $ListeRelation;
         }
         
-        public function getCategRelationByFDJId($idFdj){
-            $sqlQuery = "SELECT id,id_categ,id_fdj FROM `categ_fdj` WHERE categ_fdj.id_fdj=$idFdj";
+        public function getCategRelationByFDJId($fdj){
+            $sqlQuery = "SELECT id,id_categ,id_fdj FROM `categ_fdj` WHERE categ_fdj.id_fdj=".$fdj->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $Relation = $usersStatement->fetchAll();
@@ -242,8 +307,8 @@
             return $Relation;
         }
         
-        public function getCategRelationByCategId($idCateg){
-            $sqlQuery = "SELECT id,id_categ,id_fdj FROM `categ_fdj` WHERE categ_fdj.id_categ=$idCateg";
+        public function getCategRelationByCategId($categorie){
+            $sqlQuery = "SELECT id,id_categ,id_fdj FROM `categ_fdj` WHERE categ_fdj.id_categ=".$categorie->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $Relation = $usersStatement->fetchAll();
@@ -251,30 +316,30 @@
             return $Relation;
         }
         
-        public function insertRelation($idCateg,$idFDJ){
-            $sqlQuery = "INSERT INTO `categ_fdj` (id_categ,id_fdj) VALUES ('$idCateg','$idFDJ')";
+        public function insertRelation($categorie,$fdj){
+            $sqlQuery = "INSERT INTO `categ_fdj` (id_categ,id_fdj) VALUES ('".$categorie->id."','".$fdj->id."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             echo "<script>console.log('good');</script>";
         }
         
-        public function updateRelationByRelationID($id,$idCateg,$idFDJ){
-            $sqlQuery = "UPDATE categ_fdj SET `id_categ`='$idCateg',`id_fdj`='$idFDJ' WHERE categ_fdj.id=$id";
+        public function updateRelationByRelationID($id,$categorie,$fdj){
+            $sqlQuery = "UPDATE categ_fdj SET `id_categ`='".$categorie->id."',`id_fdj`='".$fdj->id."' WHERE categ_fdj.id=$id";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function updateRelationByCategorieID($id,$idCateg,$idFDJ){
-            $sqlQuery = "UPDATE categ_fdj SET `id_fdj`='$idFDJ' WHERE categ_fdj.id=$id AND categ_fdj.id_categ=$idCateg";
+        public function updateRelationByCategorieID($id,$categorie,$fdj){
+            $sqlQuery = "UPDATE categ_fdj SET `id_fdj`='".$fdj->id."' WHERE categ_fdj.id=$id AND categ_fdj.id_categ=".$categorie->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function updateRelationByFDJID($id,$idCateg,$idFDJ){
-            $sqlQuery = "UPDATE categ_fdj SET `id_categ`='$idCateg' WHERE categ_fdj.id=$id AND categ_fdj.id_fdj=$idFDJ";
+        public function updateRelationByFDJID($id,$categorie,$fdj){
+            $sqlQuery = "UPDATE categ_fdj SET `id_categ`='".$categorie->id."' WHERE categ_fdj.id=$id AND categ_fdj.id_fdj=".$fdj->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -287,15 +352,15 @@
             $usersStatement->execute();
         }
         
-        public function deleteRelationByCategorieID($idCateg){
-            $sqlQuery = "DELETE FROM `categ_fdj` WHERE categ_fdj.id_categ=$idCateg";
+        public function deleteRelationByCategorieID($categorie){
+            $sqlQuery = "DELETE FROM `categ_fdj` WHERE categ_fdj.id_categ=".$categorie->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteRelationByFDJID($idFDJ){
-            $sqlQuery = "DELETE FROM `categ_fdj` WHERE categ_fdj.id_categ=$idFDJ";
+        public function deleteRelationByFDJID($fdj){
+            $sqlQuery = "DELETE FROM `categ_fdj` WHERE categ_fdj.id_categ=".$fdj->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
@@ -310,7 +375,7 @@
 
 
         public function getListeAdherentByUser($user){
-            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent`,`user` WHERE user.id=$user";
+            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent`,`user` WHERE user.id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $ListeAdherent = $usersStatement->fetchAll();
@@ -318,8 +383,8 @@
             return $ListeAdherent;
         }
         
-        public function getAdherentByName($id){
-            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent` WHERE adherent.id=$id";
+        public function getAdherentByName($adherent){
+            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent` WHERE adherent.id=".$adherent->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $Adherent = $usersStatement->fetchAll();
@@ -327,23 +392,23 @@
             return $Adherent;
         }
         
-        public function insertAdherent($user,$nom,$prenom,$mail,$tel){
-            $sqlQuery = "INSERT INTO `adherent` (user_id,nom,prenom,mail,tel) VALUES ('$user','$nom','$prenom','$mail','$tel')";
+        public function insertAdherent($user,$adherent){
+            $sqlQuery = "INSERT INTO `adherent` (user_id,nom,prenom,mail,tel) VALUES ('".$user->id."','".$adherent->nom."','".$adherent->prenom."','".$adherent->mail."','".$adherent->tel."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             echo "<script>console.log('good');</script>";
         }
         
-        public function updateAdherent($user,$id,$nom,$prenom,$mail,$tel){
-            $sqlQuery = "UPDATE adherent SET `nom`='$nom',`etat`='$prenom',`mail`='$mail',`tel`='$tel'  WHERE adherent.id=$id AND adherent.user_id=$user ";
+        public function updateAdherent($user,$adherent){
+            $sqlQuery = "UPDATE adherent SET `nom`='".$adherent->nom."',`etat`='".$adherent->prenom."',`mail`='".$adherent->mail."',`tel`='".$adherent->tel."'  WHERE adherent.id=".$adherent->id." AND adherent.user_id=".$user->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
         
-        public function deleteAdherent($id){
-            $sqlQuery = "DELETE FROM `adherent` WHERE adherent.id=$id";
+        public function deleteAdherent($adherent){
+            $sqlQuery = "DELETE FROM `adherent` WHERE adherent.id=".$adherent->id;
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
