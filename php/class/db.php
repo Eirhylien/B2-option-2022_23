@@ -94,7 +94,7 @@
         }
         
         public function insertJeux($user,$nom,$etat,$dispo,$remarque){
-            $ListeFDJs = getFdj();
+            $ListeFDJs = $this->getFdj();
             foreach ($ListeFDJs as $ListeFDJ) {
                 if ($ListeFDJ['nom']==$nom){
                     $fdjId=$ListeFDJ['id'];
