@@ -107,12 +107,7 @@
         }
         
         public function insertJeux($jeux,$user){
-            $ListeFDJs = $this->getFdj();
-            foreach ($ListeFDJs as $ListeFDJ) {
-                if ($ListeFDJ['nom']==$jeux->nom){
-                    $fdjId=$ListeFDJ['id'];
-                }
-            }
+            $fdjId= getFdjIDByJeuxName($jeux);
             $sqlQuery = "INSERT INTO jeux (fdj_id,user_id,dispo,etat,remarque) VALUES ('$fdjId','".$user->id."',".$jeux->dispo.",'".$jeux->etat."','".$jeux->remarque."')";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
@@ -158,6 +153,16 @@
         
             return $fdjs;
         }
+
+        public function getFdjIDByJeuxName($jeux){
+            $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $fdjs = $usersStatement->fetchAll();
+        
+            return $fdjs;
+        }
+
         
         public function insertFdj($fdj){
             $sqlQuery = "INSERT INTO fdj (nom,`description`,`date`,img) VALUES ('".$fdj->nom."','".$fdj->description."','".$fdj->date."','".$fdj->img."')";
