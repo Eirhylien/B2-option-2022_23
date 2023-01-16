@@ -32,7 +32,6 @@
             $listeUsersObjet=array();
 
             if (sizeof($resultDB) > 0) {
-                //pour chaque jeu dans résultat
                 foreach($resultDB as $user) {
                     $users = new User();
                     $user->nom = $user['nom'];
