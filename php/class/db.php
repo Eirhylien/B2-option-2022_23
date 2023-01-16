@@ -1,6 +1,7 @@
 <?php
     require_once("./class/User.php");
     require_once("./class/Jeux.php");
+    require_once("./class/Adherent.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
@@ -375,12 +376,34 @@
 
 
         public function getListeAdherentByUser($user){
-            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent`,`user` WHERE user.id=".$user->id;
+            $sqlQuery = "SELECT user_id,id,nom,premon,mail,tel FROM `adherent`,`user` WHERE user.id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $ListeAdherent = $usersStatement->fetchAll();
+            $resultDB = $usersStatement->fetchAll();
         
-            return $ListeAdherent;
+            
+
+            $listeAdherent=array();
+
+            //vérif taille résultat
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $adherent) {
+                    $adherents = new Adherent();
+                    $adherents->user_id = $adherent['remarque'];
+                    $adherents->id =  $adherent['etat'];
+                    $adherents->nom =  $adherent['dispo'];
+                    $adherents->prenom =  $adherent['user_id'];
+                    $adherents->mail =  $adherent['user_id'];
+                    $adherents->tel =  $adherent['user_id'];
+                    array_push($listeAdherent,$adherents);
+                }
+
+                return $ListeAdherent;
+            } else {
+
+                return "Erreur";
+            }
         }
         
         public function getAdherentByName($adherent){
