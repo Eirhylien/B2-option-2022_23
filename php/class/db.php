@@ -98,12 +98,22 @@
 
 
         public function getJeuxByUser($user){
-            $sqlQuery = "SELECT id,dispo,etat,remarque FROM `jeux`,`user` WHERE user.id=".$user->id;
+            $sqlQuery = "SELECT * FROM `jeux`,`user` WHERE user.id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $jeux = $usersStatement->fetchAll();
+            $resultDB = $usersStatement->fetchAll();
         
-            return $jeux;
+            if (sizeof($resultDB) > 0) {
+                $user->remarque = $resultDB[0]['remarque'];
+                $user->etat = $resultDB[0]['etat'];
+                $user->dispo = $resultDB[0]['dispo'];
+                $user->user_id = $resultDB[0]['user_id'];
+
+                return $user;
+            } else {
+
+                return "Erreur";
+            }
         }
         
         public function insertJeux($jeux,$user){
