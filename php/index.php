@@ -13,28 +13,27 @@
 </head>
 
 <body>
-    <?php
-
-    echo test();
-    $users=GetUsers();
-    foreach ($users as $user) {
-            ?>
-
-    <p>Utilisateur: <?php echo $user['nom']. " " .$user['prenom']; ?></p>
-
-    <?php
-        }
-    $newUserArr = array("email"=>"testInsert", "nom"=>"marc", "prenom"=>"balavoine","username"=>"balmar","mdp"=>"test3","etablissement"=>"false");
-    $newUser=(object)$newUserArr;
-    InsertUser($newUser);
-    $id=2;
-    UpdateUser($id,$newUser);
-    $idd=1;
-    DeleteUser($idd);
-
-
-    
-    ?>
+   inscription text 
+   <form method="post" action="inscription.php" >
+        <div class="form-user">
+            <input class="user" name="user"  placeholder="Nom">
+        </div>
+        <div class="form-mdp">
+            <input class="prenom" name="prenom" placeholder="Prenom">
+        </div>
+        <div class="form-mdp">
+            <input class="email" name="email" placeholder="email">
+        </div>
+        <div class="form-mdp">
+            <input class="username" name="username" placeholder="Nom d'utilisateur">
+        </div>
+        <div class="form-mdp">
+            <input class="mdp" name="mdp" placeholder="Mot de passe">
+        </div>
+        <div class="button-valider-div">
+            <button class="button-valider" type="submit">Valider</button>
+        </div>
+    </form>
 </body>
 
 </html>
