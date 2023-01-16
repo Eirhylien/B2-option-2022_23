@@ -394,7 +394,7 @@
 
 
         public function getListeAdherentByUser($user){
-            $sqlQuery = "SELECT user_id,id,nom,premon,mail,tel FROM `adherent`,`user` WHERE user.id=".$user->id;
+            $sqlQuery = "SELECT adherent.user_id,adherent.id,adherent.nom,adherent.premon,adherent.mail,adherent.tel FROM `adherent`,`user` WHERE adherent.user_id=".$user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
@@ -408,12 +408,12 @@
                 //pour chaque jeu dans résultat
                 foreach($resultDB as $adherent) {
                     $adherents = new Adherent();
-                    $adherents->user_id = $adherent['remarque'];
+                    $adherents->user_id = $adherent['user_id'];
                     $adherents->id =  $adherent['etat'];
                     $adherents->nom =  $adherent['dispo'];
-                    $adherents->prenom =  $adherent['user_id'];
-                    $adherents->mail =  $adherent['user_id'];
-                    $adherents->tel =  $adherent['user_id'];
+                    $adherents->prenom =  $adherent['prenom'];
+                    $adherents->mail =  $adherent['mail'];
+                    $adherents->tel =  $adherent['tel'];
                     array_push($listeAdherent,$adherents);
                 }
 
@@ -424,13 +424,24 @@
             }
         }
         
-        public function getAdherentByName($adherent){
-            $sqlQuery = "SELECT nom,premon,mail,tel FROM `adherent` WHERE adherent.id=".$adherent->id;
+        public function getAdherentByID($adherent){
+            $sqlQuery = "SELECT id,user_id,nom,premon,mail,tel FROM `adherent` WHERE adherent.id=".$adherent->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
-            $Adherent = $usersStatement->fetchAll();
+            $resultDB = $usersStatement->fetchAll();
         
-            return $Adherent;
+
+            if (sizeof($resultDB) > 0) {
+                $adherent->user_id = $resultDB['user_id'];
+                $adherent->nom =  $resultDB['nom'];
+                $adherent->prenom =  $resultDB['prenom'];
+                $adherent->mail =  $resultDB['mail'];
+                $adherent->tel =  $resultDB['tel'];
+                return $adherent;
+            } else {
+
+                return "Erreur";
+            }
         }
         
         public function insertAdherent($user,$adherent){
