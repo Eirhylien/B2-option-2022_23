@@ -13,7 +13,7 @@
 </head>
 
 <body>
-   inscription text 
+   inscription text
    <form method="post" action="inscription.php" >
         <div class="form-user">
             <input class="user" name="user"  placeholder="Nom">
