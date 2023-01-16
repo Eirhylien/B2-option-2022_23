@@ -103,18 +103,21 @@
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
-        
-            if (sizeof($resultDB) > 0) {
-                $jeux = new Jeux();
+            $listeJeuxObjet=array();
 
-                foreach($jeux as $jeu) {
-                    $jeu->remarque = $resultDB[0]['remarque'];
-                    $jeu->etat = $resultDB[0]['etat'];
-                    $jeu->dispo = $resultDB[0]['dispo'];
-                    $jeu->user_id = $resultDB[0]['user_id'];
+            //vérif taille résultat
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $jeu) {
+                    $jeux = new Jeux();
+                    $jeux->remarque = $jeu['remarque'];
+                    $jeux->etat =  $jeu['etat'];
+                    $jeux->dispo =  $jeu['dispo'];
+                    $jeux->user_id =  $jeu['user_id'];
+                    array_push($listeJeuxObjet,$jeux);
                 }
 
-                return $jeu;
+                return $listeJeuxObjet;
             } else {
 
                 return "Erreur";
