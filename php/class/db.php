@@ -2,7 +2,6 @@
     require_once("./class/User.php");
     require_once("./class/Jeux.php");
     require_once("./class/FDJ.php");
-    require_once("./class/Adherent.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
@@ -384,87 +383,5 @@
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
         }
-
-
-
-
-
-
-        //CRUD ADHERENT
-
-
-        public function getListeAdherentByUser($user){
-            $sqlQuery = "SELECT adherent.user_id,adherent.id,adherent.nom,adherent.premon,adherent.mail,adherent.tel FROM `adherent`,`user` WHERE adherent.user_id=".$user->id;
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            $resultDB = $usersStatement->fetchAll();
-        
-            
-
-            $listeAdherent=array();
-
-            //vérif taille résultat
-            if (sizeof($resultDB) > 0) {
-                //pour chaque jeu dans résultat
-                foreach($resultDB as $adherent) {
-                    $adherents = new Adherent();
-                    $adherents->user_id = $adherent['user_id'];
-                    $adherents->id =  $adherent['etat'];
-                    $adherents->nom =  $adherent['dispo'];
-                    $adherents->prenom =  $adherent['prenom'];
-                    $adherents->mail =  $adherent['mail'];
-                    $adherents->tel =  $adherent['tel'];
-                    array_push($listeAdherent,$adherents);
-                }
-
-                return $ListeAdherent;
-            } else {
-
-                return "Erreur";
-            }
-        }
-        
-        public function getAdherentByID($adherent){
-            $sqlQuery = "SELECT id,user_id,nom,premon,mail,tel FROM `adherent` WHERE adherent.id=".$adherent->id;
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            $resultDB = $usersStatement->fetchAll();
-        
-
-            if (sizeof($resultDB) > 0) {
-                $adherent->user_id = $resultDB['user_id'];
-                $adherent->nom =  $resultDB['nom'];
-                $adherent->prenom =  $resultDB['prenom'];
-                $adherent->mail =  $resultDB['mail'];
-                $adherent->tel =  $resultDB['tel'];
-                return $adherent;
-            } else {
-
-                return "Erreur";
-            }
-        }
-        
-        public function insertAdherent($user,$adherent){
-            $sqlQuery = "INSERT INTO `adherent` (user_id,nom,prenom,mail,tel) VALUES ('".$user->id."','".$adherent->nom."','".$adherent->prenom."','".$adherent->mail."','".$adherent->tel."')";
-            echo "<script>console.log('".$sqlQuery."');</script>";
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            echo "<script>console.log('good');</script>";
-        }
-        
-        public function updateAdherent($user,$adherent){
-            $sqlQuery = "UPDATE adherent SET `nom`='".$adherent->nom."',`etat`='".$adherent->prenom."',`mail`='".$adherent->mail."',`tel`='".$adherent->tel."'  WHERE adherent.id=".$adherent->id." AND adherent.user_id=".$user->id;
-            echo "<script>console.log('".$sqlQuery."');</script>";
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-        }
-        
-        public function deleteAdherent($adherent){
-            $sqlQuery = "DELETE FROM `adherent` WHERE adherent.id=".$adherent->id;
-            echo "<script>console.log('".$sqlQuery."');</script>";
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-        }
-        
     }
 ?>
