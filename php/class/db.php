@@ -51,8 +51,8 @@
             }
         }
         
-        public function getUsersById($user){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $user->id;
+        public function getUserById($user){
+            $sqlQuery = "SELECT * FROM `jeux` WHERE user.id=" . $user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
@@ -66,6 +66,27 @@
                 $user->etablissement = $resultDB[0]['etablissement'];
 
                 return $user;
+            } else {
+
+                return "Erreur";
+            }
+        }
+
+        public function getJeux($jeux){
+            $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $jeux->id;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+
+            if (sizeof($resultDB) > 0) {
+                $jeux->id = $resultDB[0]['id'];
+                $jeux->fdj_id = $resultDB[0]['fdj_id'];
+                $jeux->user_id = $resultDB[0]['user_id'];
+                $jeux->dispo = $resultDB[0]['dispo'];
+                $jeux->etat = $resultDB[0]['etat'];
+                $jeux->remarque = $resultDB[0]['remarque'];
+
+                return $jeux;
             } else {
 
                 return "Erreur";
@@ -192,7 +213,7 @@
             return $fdjs;
         }
 
-        public function getFdjIDByJeuxName($jeux){
+        public function getFdjIdByJeuxName($jeux){
             $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
