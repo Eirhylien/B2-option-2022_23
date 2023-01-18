@@ -1,7 +1,7 @@
 <?php
-    require_once("./class/User.php");
-    require_once("./class/Jeux.php");
-    require_once("./class/FDJ.php");
+    require_once("User.php");
+    require_once("Jeux.php");
+    require_once("FDJ.php");
 
     function connexion($servername, $username, $password, $dbname) {
         try {
