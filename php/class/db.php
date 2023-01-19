@@ -34,14 +34,7 @@
 
             if (sizeof($resultDB) > 0) {
                 foreach($resultDB as $user) {
-                    $users = new User();
-                    $users->id = $user['id'];
-                    $users->nom = $user['nom'];
-                    $users->prenom = $user['prenom'];
-                    $users->username = $user['username'];
-                    $users->email = $user['email'];
-                    $users->mdp = $user['mdp'];
-                    $users->etablissement = $user['etablissement'];
+                    $users = new User($user['id'],$user['nom'],$user['prenom'],$user['username'],$user['email'],$user['mdp'],$user['etablissement']);
                     array_push($listeUsersObjet,$users);
                 }
 
