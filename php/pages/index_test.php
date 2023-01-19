@@ -24,7 +24,7 @@
         $valeurs=false;
         $converted_res= $valeurs ? 'true' : 'false';
         echo($converted_res);
-        $user = new User("user","prenom","username","email","mdp",$converted_res);
+        $user = new User(1,"user","prenom","username","email","mdp",$converted_res);
 
         $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('". $user->email ."','". $user->nom."','". $user->prenom."','". $user->username."','". $user->mdp."',". $user->etablissement.")";
         echo ($sqlQuery);
