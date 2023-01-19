@@ -18,7 +18,6 @@
             $this->email=$email;
             $this->mdp=$mdp;
             $this->etablissement=$etablissement;
-
         }
     }
 ?>

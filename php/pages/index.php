@@ -8,7 +8,7 @@
     <title>Bibliothèque</title>
 
     <!-- Import CSS -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 
     <!-- Import Icons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
