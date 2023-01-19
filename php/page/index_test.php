@@ -1,5 +1,6 @@
 <?php
     //require("CrudUser.php");
+    require("../class/User.php");
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,32 @@
 </head>
 
 <body>
+
+
+<h1> TEST CONNEXION DB</h1>
+<?php
+     try {
+        $db = new PDO('mysql:host=db5011603677.hosting-data.io:3306;dbname=dbs9782335;', 'dbu913389', 'NsU2iLPyJ5kRM4h');
+        //select user
+        $valeurs=false;
+        $converted_res= $valeurs ? 'true' : 'false';
+        echo($converted_res);
+        $user = new User("user","prenom","username","email","mdp",$converted_res);
+
+        $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('". $user->email ."','". $user->nom."','". $user->prenom."','". $user->username."','". $user->mdp."',". $user->etablissement.")";
+        echo ($sqlQuery);
+        $usersStatement = $db->prepare($sqlQuery);
+        $usersStatement->execute();
+
+
+    } catch (PDOException $e) {
+        print "Erreur: " . $e->getMessage() . "<br/>";
+        die;
+    }
+
+?>
+
+
    inscription text
    <form method="post" action="inscription.php" >
         <div class="form-user">

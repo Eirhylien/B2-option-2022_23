@@ -5,7 +5,7 @@
 
     function connexion($servername, $username, $password, $dbname) {
         try {
-            $db = new PDO('mysql:host='. $servername .';dbname='. $dbname .';charset=utf8', $username, $password);
+            $db = new PDO('mysql:host='. $servername .';dbname='. $dbname .';', $username, $password);
             return $db;
         } catch (PDOException $e) {
             print "Erreur: " . $e->getMessage() . "<br/>";
@@ -18,7 +18,7 @@
         private $connexiondb;
 
         public function __construct() {
-            $this->connexiondb = connexion("127.0.0.1", "youenn", "56QwXpdmU=", "ludotechalea");
+            $this->connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2iLPyJ5kRM4h", "dbs9782335");
         }
 
 
@@ -73,6 +73,20 @@
             }
         }
 
+        public function getUsersByEmail($user){
+            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."':";
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+
+            if (sizeof($resultDB) > 0) {
+                return TRUE;
+            } else {
+
+                return FALSE;
+            }
+        }
+
         public function getJeux($jeux){
             $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $jeux->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
@@ -109,7 +123,8 @@
         }
         
         public function insertUser($user){
-            $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('". $user->email ."','". $user->nom."','". $user->prenom."','". $user->username."','". $user->mdp."',". $user->etablissement.")";
+            $converted_res=  $user->etablissement ? 'true' : 'false';
+            $sqlQuery = "INSERT INTO user (email,nom,prenom,username,mdp,etablissement) VALUES ('". $user->email ."','". $user->nom."','". $user->prenom."','". $user->username."','". $user->mdp."',". $converted_res.")";
             echo "<script>console.log('".$sqlQuery."');</script>";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
