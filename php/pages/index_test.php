@@ -16,8 +16,8 @@
 <body>
 
 
-<h1> TEST CONNEXION DB</h1>
-<?php
+    <h1> TEST CONNEXION DB</h1>
+    <?php
      try {
         $db = new PDO('mysql:host=db5011603677.hosting-data.io:3306;dbname=dbs9782335;', 'dbu913389', 'NsU2iLPyJ5kRM4h');
         //select user
@@ -40,10 +40,10 @@
 ?>
 
 
-   inscription text
-   <form method="post" action="inscription.php" >
+    inscription text
+    <form method="post" action="inscription.php">
         <div class="form-user">
-            <input class="user" name="user"  placeholder="Nom">
+            <input class="user" name="user" placeholder="Nom">
         </div>
         <div class="form-mdp">
             <input class="prenom" name="prenom" placeholder="Prenom">
