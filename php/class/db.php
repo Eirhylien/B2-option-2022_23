@@ -66,19 +66,37 @@
             }
         }
 
-        public function getUsersByEmail($user){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."':";
+        public function IsExistEmail($user){
+            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."'";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
 
             if (sizeof($resultDB) > 0) {
-                return TRUE;
+                return TRUE ; 
             } else {
 
                 return FALSE;
             }
         }
+
+
+        public function getMdpByEmail($user){
+            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."'";
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+
+            if (sizeof($resultDB) > 0) {
+                $users = new User($resultDB[0]['id'],$resultDB[0]['nom'],$resultDB[0]['prenom'],$resultDB[0]['username'],$resultDB[0]['email'],$resultDB[0]['mdp'],$resultDB[0]['etablissement']);
+                return $user;
+            } else {
+
+                return FALSE;
+            }
+        }
+
+
 
         public function getJeux($jeux){
             $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $jeux->id;

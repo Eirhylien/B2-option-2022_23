@@ -19,5 +19,21 @@
             $this->mdp=$mdp;
             $this->etablissement=$etablissement;
         }
+        public static function getUserById($id){
+            $usr = new User($id,"","","","","","");
+            $db = new Database();
+            $usr = $db->getUserById($usr);
+            if(gettype($usr)=="object")
+            {
+                return $usr;
+            } 
+            else{
+                return "Erreur";
+            } 
+        }
+    
     }
+
+    $test = User::getUserById(2);
+ 
 ?>

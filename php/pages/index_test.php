@@ -32,13 +32,6 @@
         $usersStatement->execute();
 
 
-    } catch (PDOException $e) {
-        print "Erreur: " . $e->getMessage() . "<br/>";
-        die;
-    }
-
-?>
-
 
     inscription text
     <form method="post" action="inscription.php">
