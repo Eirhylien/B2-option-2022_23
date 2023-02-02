@@ -279,7 +279,16 @@
         }
 
         public function getFdjByJeuxName($jeux){
-            $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
+            $sqlQuery = "SELECT * FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $fdjs = $usersStatement->fetchAll();
+        
+            return $fdjs;
+        }
+
+        public function getFdjIDByJeuxName($jeux){
+            $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->fdj_id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $fdjs = $usersStatement->fetchAll();
