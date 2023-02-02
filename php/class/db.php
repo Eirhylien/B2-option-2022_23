@@ -109,6 +109,56 @@
 
         //CRUD JEUX
 
+        public function getJeuxALL(){
+            $sqlQuery = "SELECT jeux.* FROM `jeux`";
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+            $listeJeuxObjet=array();
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $jeu) {
+                    $jeux = new Jeux();
+                    $jeux->remarque = $jeu['remarque'];
+                    $jeux->etat =  $jeu['etat'];
+                    $jeux->dispo =  $jeu['dispo'];
+                    $jeux->user_id =  $jeu['user_id'];
+                    array_push($listeJeuxObjet,$jeux);
+                }
+
+                return $listeJeuxObjet;
+            } else {
+
+                return "Erreur";
+            }
+
+        }
+
+        public function getJeuxByID($Jeux){
+            $sqlQuery = "SELECT * FROM `jeux` WHERE jeux.id=".$Jeux->id;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+            if (sizeof($resultDB) > 0) {
+                //pour chaque jeu dans résultat
+                foreach($resultDB as $jeu) {
+                    $jeux = new Jeux();
+                    $jeux->remarque = $jeu['remarque'];
+                    $jeux->etat =  $jeu['etat'];
+                    $jeux->dispo =  $jeu['dispo'];
+                    $jeux->user_id =  $jeu['user_id'];
+                    $jeux->fdj_id = $jeu['fdj_id']
+                    array_push($listeJeuxObjet,$jeux);
+                }
+
+                return $listeJeuxObjet;
+            } else {
+
+                return "Erreur";
+            }
+
+        }
+
 
 
         public function getJeuxByUser($user){
