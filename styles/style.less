@@ -2,8 +2,11 @@
 
 // Variables couleurs
 @white: white;
-@black: #380a0a;
+@black: #000;
+@lightblack: #404040;
 @red: #86242d;
+@darkred: #380a0a;
+@carousel-color: #b0d5d8;
 
 // Variables polices
 @fontsm: 14px;
@@ -49,7 +52,7 @@ a {
     }
 
     .logo {
-      color: @black;
+      color: @darkred;
       font-weight: bold;
       font-size: @fontm;
     }
@@ -71,7 +74,7 @@ a {
       }
 
       a {
-        color: @black;
+        color: @darkred;
         opacity: 0.6;
       }
 
@@ -82,6 +85,135 @@ a {
 
       i {
         font-size: @fontm;
+        opacity: 1;
+      }
+    }
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    background: @carousel-color;
+
+    .myslider {
+      height: 655px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .slider_details {
+      position: absolute;
+      top: 40%;
+      left: 5%;
+      z-index: 100;
+      transform: scale(0.9);
+    }
+
+    .slider_title,
+    .slider_dispo {
+      color: @black;
+      font-size: 18px;
+    }
+
+    .slider_nom {
+      color: @black;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .slider_btn {
+      position: relative;
+      top: 80px;
+      color: @black;
+      font-weight: bold;
+      padding: 12px 60px;
+      background: @white;
+      border-radius: 20px;
+    }
+
+    .slider_img {
+      position: absolute;
+      left: 42%;
+      bottom: 0;
+      height: 62%;
+    }
+
+    .slider_logo {
+      position: absolute;
+      top: 5%;
+      right: 6%;
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .navigation_slider {
+      position: absolute;
+      left: 2%;
+      bottom: 12%;
+      display: flex;
+      align-items: center;
+      transform: scale(0.8);
+    }
+
+    .prev,
+    .next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: @lightblack;
+      width: 40px;
+      height: 40px;
+      background-color: @white;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .prev {
+      margin-right: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .next {
+      margin-left: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .dotsbox {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .dot {
+        width: 24px;
+        height: 4px;
+        background: @white;
+        opacity: 0.6;
+        border-radius: 4px;
+        margin: 0 3px;
+        cursor: pointer;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: @lightblack;
         opacity: 1;
       }
     }
@@ -110,7 +242,7 @@ a {
     }
 
     .logo {
-      color: @black;
+      color: @lightblack;
       font-weight: bold;
       font-size: @fontx;
     }
@@ -132,7 +264,7 @@ a {
       }
 
       a {
-        color: @black;
+        color: @lightblack;
         opacity: 0.6;
       }
 
@@ -143,6 +275,137 @@ a {
 
       i {
         font-size: @fontx;
+        opacity: 1;
+      }
+    }
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    background: @carousel-color;
+
+    .myslider {
+      height: 655px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .slider_details {
+      position: absolute;
+      top: 50%;
+      left: 3%;
+      transform: translateY(-50%);
+      z-index: 100;
+      transform: scale(0.8);
+    }
+
+    .slider_title,
+    .slider_dispo {
+      color: @black;
+      font-size: 18px;
+    }
+
+    .slider_nom {
+      color: @black;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .slider_btn {
+      position: relative;
+      top: 80px;
+      color: @black;
+      font-weight: bold;
+      padding: 12px 60px;
+      background: @white;
+      border-radius: 20px;
+    }
+
+    .slider_img {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      height: 73%;
+    }
+
+    .slider_logo {
+      position: absolute;
+      top: 10%;
+      right: 6%;
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    .navigation_slider {
+      position: absolute;
+      right: 2%;
+      bottom: 12%;
+      display: flex;
+      align-items: center;
+      transform: scale(0.8);
+    }
+
+    .prev,
+    .next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: @lightblack;
+      width: 40px;
+      height: 40px;
+      background-color: @white;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .prev {
+      margin-right: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .next {
+      margin-left: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .dotsbox {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .dot {
+        width: 24px;
+        height: 4px;
+        background: @white;
+        opacity: 0.6;
+        border-radius: 4px;
+        margin: 0 3px;
+        cursor: pointer;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: @lightblack;
         opacity: 1;
       }
     }
@@ -171,7 +434,7 @@ a {
     }
 
     .logo {
-      color: @black;
+      color: @darkred;
       font-weight: bold;
       font-size: @fontxl;
     }
@@ -193,7 +456,7 @@ a {
       }
 
       a {
-        color: @black;
+        color: @darkred;
         opacity: 0.6;
       }
 
@@ -204,6 +467,135 @@ a {
 
       i {
         font-size: @fontxl;
+        opacity: 1;
+      }
+    }
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    background: @carousel-color;
+
+    .myslider {
+      height: 655px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .slider_details {
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .slider_title,
+    .slider_dispo {
+      color: @black;
+      font-size: 18px;
+    }
+
+    .slider_nom {
+      color: @black;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .slider_btn {
+      position: relative;
+      top: 80px;
+      color: @black;
+      font-weight: bold;
+      padding: 12px 60px;
+      background: @white;
+      border-radius: 20px;
+    }
+
+    .slider_img {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      height: 90%;
+    }
+
+    .slider_logo {
+      position: absolute;
+      top: 10%;
+      right: 6%;
+
+      img {
+        width: 130px;
+        height: 130px;
+      }
+    }
+
+    .navigation_slider {
+      position: absolute;
+      right: 10%;
+      bottom: 16%;
+      display: flex;
+      align-items: center;
+    }
+
+    .prev,
+    .next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: @lightblack;
+      width: 40px;
+      height: 40px;
+      background-color: @white;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .prev {
+      margin-right: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .next {
+      margin-left: 12px;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    .dotsbox {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .dot {
+        width: 24px;
+        height: 4px;
+        background: @white;
+        opacity: 0.6;
+        border-radius: 4px;
+        margin: 0 3px;
+        cursor: pointer;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: @lightblack;
         opacity: 1;
       }
     }
