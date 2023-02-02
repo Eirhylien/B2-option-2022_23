@@ -18,7 +18,7 @@
         private $connexiondb;
 
         public function __construct() {
-            $this->connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2iLPyJ5kRM4h", "dbs9782335");
+            $this->connexiondb = connexion("localhost", "root", "root", "ludotechalea");
         }
 
 
@@ -147,7 +147,7 @@
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
                     $jeux->user_id =  $jeu['user_id'];
-                    $jeux->fdj_id = $jeu['fdj_id']
+                $jeux->fdj_id = $jeu['fdj_id'];
                     array_push($listeJeuxObjet,$jeux);
                 }
 
