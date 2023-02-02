@@ -45,8 +45,8 @@
             }
         }
         
-        public function getUsersById($user){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $user->id;
+        public function getUserById($user){
+            $sqlQuery = "SELECT * FROM `jeux` WHERE user.id=" . $user->id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();
@@ -60,59 +60,6 @@
                 $user->etablissement = $resultDB[0]['etablissement'];
 
                 return $user;
-            } else {
-
-                return "Erreur";
-            }
-        }
-
-        public function IsExistEmail($user){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."'";
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            $resultDB = $usersStatement->fetchAll();
-
-            if (sizeof($resultDB) > 0) {
-                return TRUE ; 
-            } else {
-
-                return FALSE;
-            }
-        }
-
-
-        public function getMdpByEmail($user){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.email='" . $user->email."'";
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            $resultDB = $usersStatement->fetchAll();
-
-            if (sizeof($resultDB) > 0) {
-                $users = new User($resultDB[0]['id'],$resultDB[0]['nom'],$resultDB[0]['prenom'],$resultDB[0]['username'],$resultDB[0]['email'],$resultDB[0]['mdp'],$resultDB[0]['etablissement']);
-                return $user;
-            } else {
-
-                return FALSE;
-            }
-        }
-
-
-
-        public function getJeux($jeux){
-            $sqlQuery = "SELECT * FROM `user` WHERE user.id=" . $jeux->id;
-            $usersStatement = $this->connexiondb->prepare($sqlQuery);
-            $usersStatement->execute();
-            $resultDB = $usersStatement->fetchAll();
-
-            if (sizeof($resultDB) > 0) {
-                $jeux->id = $resultDB[0]['id'];
-                $jeux->fdj_id = $resultDB[0]['fdj_id'];
-                $jeux->user_id = $resultDB[0]['user_id'];
-                $jeux->dispo = $resultDB[0]['dispo'];
-                $jeux->etat = $resultDB[0]['etat'];
-                $jeux->remarque = $resultDB[0]['remarque'];
-
-                return $jeux;
             } else {
 
                 return "Erreur";
@@ -257,7 +204,7 @@
             return $fdjs;
         }
 
-        public function getFdjIdByJeuxName($jeux){
+        public function getFdjIDByJeuxName($jeux){
             $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
