@@ -147,7 +147,7 @@
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
                     $jeux->user_id =  $jeu['user_id'];
-                    $jeux->fdj_id = $jeu['fdj_id']
+                    $jeux->fdj_id = $jeu['fdj_id'];
                     array_push($listeJeuxObjet,$jeux);
                 }
 

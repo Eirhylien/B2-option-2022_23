@@ -149,7 +149,9 @@
             </div>
         </div>
     </div>
+    <div class="btn-grid"><a href="#">Voir plus</a></div>
 </main>
+<?php include("./composants/footer.php") ?>
 <script src="../../js/slider.js"></script>
 <!-- <nav>
     <div class="navigation">
