@@ -35,6 +35,7 @@
 }
 body {
   font-family: "Raleway", sans-serif;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
@@ -209,12 +210,165 @@ a {
     color: #000;
     font-style: italic;
   }
+  .grid-jeux .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.5rem;
+    grid-auto-rows: minmax(100px, auto);
+    width: 70%;
+    margin: 50px auto 0 auto;
+  }
+  .grid-jeux .grid-container .grid-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  .grid-jeux .grid-container .grid-item .title {
+    padding-top: 40px;
+  }
+  .grid-jeux .grid-container .grid-item img {
+    height: 60%;
+    transition: all 0.2s ease;
+    padding-top: 30px;
+  }
+  .grid-jeux .grid-container .grid-item .long-part-placement {
+    width: 100%;
+    height: 100%;
+  }
+  .grid-jeux .grid-container .grid-item .long-part-placement img {
+    height: 60%;
+    transition: all 0.2s ease;
+    position: relative;
+    left: 30px;
+  }
+  .grid-jeux .grid-container .grid-item .btn-details-jeu {
+    display: flex;
+    align-items: center;
+    width: 24%;
+    margin: 35px auto 0 auto;
+    position: relative;
+    z-index: 0;
+  }
+  .grid-jeux .grid-container .grid-item .btn-details-jeu::after {
+    content: "";
+    position: absolute;
+    left: -20px;
+    width: 35%;
+    height: 120%;
+    background: white;
+    border-radius: 40px;
+    transition: 0.3s;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  .grid-jeux .grid-container .grid-item .btn-details-jeu p {
+    color: #000;
+    font-size: 18px;
+  }
+  .grid-jeux .grid-container .grid-item .btn-details-jeu i {
+    color: #000;
+    font-size: 26px;
+    padding-left: 10px;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu {
+    display: flex;
+    align-items: center;
+    width: 24%;
+    margin: 35px auto 0 auto;
+    position: relative;
+    z-index: 0;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu::after {
+    content: "";
+    position: absolute;
+    left: -20px;
+    width: 35%;
+    height: 120%;
+    background: white;
+    border-radius: 40px;
+    transition: 0.3s;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu p {
+    color: #000;
+    font-size: 18px;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu i {
+    color: #000;
+    font-size: 26px;
+    padding-left: 10px;
+  }
+  .grid-jeux .grid-container .item-1 {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-1 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-2 {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-2 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-3 {
+    background-color: #add4ff;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-3 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-4 {
+    background-color: #ebd9d9;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-4 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-5 {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-5 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-6 {
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-6 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .grid-jeux .grid-container .item-7 {
+    background-color: #e6e2f0;
+    text-align: center;
+  }
+  .grid-jeux .grid-container .item-7 .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
-@media (min-width: 960px) {
+@media (min-width: 960px) and (max-width: 1280px) {
   nav {
     width: 100%;
     height: 60px;
-    background: red;
   }
   .navigation {
     width: 90%;
@@ -385,10 +539,10 @@ a {
   }
   .grid-jeux .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
     grid-auto-rows: minmax(100px, auto);
-    width: 85%;
+    width: 80%;
     margin: 50px auto 0 auto;
   }
   .grid-jeux .grid-container .grid-item {
@@ -406,6 +560,16 @@ a {
     transition: all 0.2s ease;
     padding-top: 30px;
   }
+  .grid-jeux .grid-container .grid-item .long-part-placement {
+    width: 100%;
+    height: 100%;
+  }
+  .grid-jeux .grid-container .grid-item .long-part-placement img {
+    height: 60%;
+    transition: all 0.2s ease;
+    position: relative;
+    left: 30px;
+  }
   .grid-jeux .grid-container .grid-item .btn-details-jeu {
     display: flex;
     align-items: center;
@@ -418,7 +582,7 @@ a {
     content: "";
     position: absolute;
     left: -20px;
-    width: 40%;
+    width: 35%;
     height: 120%;
     background: white;
     border-radius: 40px;
@@ -431,6 +595,35 @@ a {
     font-size: 18px;
   }
   .grid-jeux .grid-container .grid-item .btn-details-jeu i {
+    color: #000;
+    font-size: 26px;
+    padding-left: 10px;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu {
+    display: flex;
+    align-items: center;
+    width: 24%;
+    margin: 35px auto 0 auto;
+    position: relative;
+    z-index: 0;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu::after {
+    content: "";
+    position: absolute;
+    left: -20px;
+    width: 35%;
+    height: 120%;
+    background: white;
+    border-radius: 40px;
+    transition: 0.3s;
+    z-index: -1;
+    opacity: 0.6;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu p {
+    color: #000;
+    font-size: 18px;
+  }
+  .grid-jeux .grid-container .grid-item .long-btn-details-jeu i {
     color: #000;
     font-size: 26px;
     padding-left: 10px;
@@ -459,8 +652,8 @@ a {
   }
   .grid-jeux .grid-container .item-3 {
     background-color: #add4ff;
-    grid-column: 3 / 4;
-    grid-row: 1;
+    grid-column: 1 / 2;
+    grid-row: 2;
     text-align: center;
   }
   .grid-jeux .grid-container .item-3 .title {
@@ -470,55 +663,19 @@ a {
   }
   .grid-jeux .grid-container .item-4 {
     background-color: #ebd9d9;
-    grid-column: 1 / 3;
+    grid-column: 2 / 3;
     grid-row: 2;
+    text-align: center;
   }
   .grid-jeux .grid-container .item-4 .title {
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin-left: 80px;
-  }
-  .grid-jeux .grid-container .item-4 img {
-    height: 300px;
-    margin-left: 80px;
-  }
-  .grid-jeux .grid-container .item-4 .long-part-placement {
-    display: flex;
-  }
-  .grid-jeux .grid-container .item-4 .long-btn-details-jeu {
-    display: flex;
-    align-items: center;
-    width: 13%;
-    height: 20%;
-    position: relative;
-    margin-top: 40.5%;
-    z-index: 0;
-  }
-  .grid-jeux .grid-container .item-4 .long-btn-details-jeu::after {
-    content: "";
-    position: absolute;
-    left: -20px;
-    width: 37%;
-    height: 120%;
-    background: white;
-    border-radius: 40px;
-    transition: 0.3s;
-    z-index: -1;
-    opacity: 0.6;
-  }
-  .grid-jeux .grid-container .item-4 .long-btn-details-jeu p {
-    color: #000;
-    font-size: 18px;
-  }
-  .grid-jeux .grid-container .item-4 .long-btn-details-jeu i {
-    color: #000;
-    font-size: 26px;
-    padding-left: 10px;
   }
   .grid-jeux .grid-container .item-5 {
     background-color: #f5f5f5;
-    grid-column: 3 / 4;
-    grid-row: 2;
+    grid-column: 1 / 2;
+    grid-row: 3;
     text-align: center;
   }
   .grid-jeux .grid-container .item-5 .title {
@@ -528,7 +685,7 @@ a {
   }
   .grid-jeux .grid-container .item-6 {
     background-color: #f5f5f5;
-    grid-column: 1 / 2;
+    grid-column: 2 / 3;
     grid-row: 3;
     text-align: center;
   }
@@ -539,50 +696,14 @@ a {
   }
   .grid-jeux .grid-container .item-7 {
     background-color: #e6e2f0;
-    grid-column: 2 / 4;
-    grid-row: 3;
+    grid-column: 1 / 2;
+    grid-row: 4;
+    text-align: center;
   }
   .grid-jeux .grid-container .item-7 .title {
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin-left: 80px;
-  }
-  .grid-jeux .grid-container .item-7 img {
-    height: 300px;
-    margin-left: 80px;
-  }
-  .grid-jeux .grid-container .item-7 .long-part-placement {
-    display: flex;
-  }
-  .grid-jeux .grid-container .item-7 .long-btn-details-jeu {
-    display: flex;
-    align-items: center;
-    width: 13%;
-    height: 20%;
-    position: relative;
-    margin-top: 40.5%;
-    z-index: 0;
-  }
-  .grid-jeux .grid-container .item-7 .long-btn-details-jeu::after {
-    content: "";
-    position: absolute;
-    left: -20px;
-    width: 37%;
-    height: 120%;
-    background: white;
-    border-radius: 40px;
-    transition: 0.3s;
-    z-index: -1;
-    opacity: 0.6;
-  }
-  .grid-jeux .grid-container .item-7 .long-btn-details-jeu p {
-    color: #000;
-    font-size: 18px;
-  }
-  .grid-jeux .grid-container .item-7 .long-btn-details-jeu i {
-    color: #000;
-    font-size: 26px;
-    padding-left: 10px;
   }
 }
 @media (min-width: 1280px) {
