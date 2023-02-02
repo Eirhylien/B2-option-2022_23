@@ -123,6 +123,7 @@
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
                     $jeux->user_id =  $jeu['user_id'];
+                    $jeux->fdj_id = $jeu['fdj_id'];
                     array_push($listeJeuxObjet,$jeux);
                 }
 
@@ -147,7 +148,7 @@
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
                     $jeux->user_id =  $jeu['user_id'];
-                    $jeux->fdj_id = $jeu['fdj_id']
+                    $jeux->fdj_id = $jeu['fdj_id'];
                     array_push($listeJeuxObjet,$jeux);
                 }
 
@@ -179,6 +180,7 @@
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
                     $jeux->user_id =  $jeu['user_id'];
+                    $jeux->fdj_id = $jeu['fdj_id'];
                     array_push($listeJeuxObjet,$jeux);
                 }
 
@@ -246,7 +248,7 @@
         }
 
         public function getFdjByJeux($jeux){
-            $sqlQuery = "SELECT fdj.id,fdj.nom,fdp.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$jeux->id;
+            $sqlQuery = "SELECT fdj.id,fdj.nom,fdp.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$jeux->fdj_id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $fdjs = $usersStatement->fetchAll();
@@ -254,7 +256,16 @@
             return $fdjs;
         }
 
-        public function getFdjIDByJeuxName($jeux){
+        public function getFdjByID($id){
+            $sqlQuery = "SELECT fdj.id,fdj.nom,fdp.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$id;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $fdjs = $usersStatement->fetchAll();
+        
+            return $fdjs;
+        }
+
+        public function getFdjByJeuxName($jeux){
             $sqlQuery = "SELECT fdj.id FROM `fdj`,`jeux` where fdj.nom=".$jeux->nom;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
