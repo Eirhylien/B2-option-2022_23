@@ -18,7 +18,7 @@
         private $connexiondb;
 
         public function __construct() {
-            $this->connexiondb = connexion("localhost", "root", "root", "ludotechalea");
+            $this->connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2iLPyJ5kRM4h", "dbs9782335");
         }
 
 
