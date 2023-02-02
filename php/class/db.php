@@ -44,6 +44,19 @@
                 return "Erreur";
             }
         }
+
+        public function IsExistEmail($user){
+            $sqlQuery = "SELECT * FROM `user` where user.email=".$user->email;
+            $usersStatement = $this->connexiondb->prepare($sqlQuery);
+            $usersStatement->execute();
+            $resultDB = $usersStatement->fetchAll();
+            if (sizeof($resultDB) > 0){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
         
         public function getUserById($user){
             $sqlQuery = "SELECT * FROM `jeux` WHERE user.id=" . $user->id;
