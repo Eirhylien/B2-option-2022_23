@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(15) NOT NULL,
   `mdp` varchar(15) NOT NULL,
   `etablissement` tinyint(1) NOT NULL,
+  `role` int(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
