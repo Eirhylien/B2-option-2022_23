@@ -24,7 +24,12 @@
 
 
         //CRUD USER
-
+        
+        /**
+         * getUsers
+         *
+         * @return void
+         */
         public function getUsers(){
             $sqlQuery = "SELECT * FROM `user`";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
@@ -44,7 +49,13 @@
                 return "Erreur";
             }
         }
-
+        
+        /**
+         * IsExistEmail
+         *
+         * @param  mixed $user
+         * @return void
+         */
         public function IsExistEmail($user){
             $sqlQuery = "SELECT * FROM `user` where user.email=".$user->email;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);

@@ -31,7 +31,7 @@
             $usersStatement = $db->prepare($sqlQuery);
             $usersStatement->execute();
         } catch (PDOException $e) {
-            print "Il y a une erreur ici, j'ai rajouté des trucs pour ne plus avoir l'erreur et voir à la correction après";
+            print "Il y a une erreur";
         }
     ?>
 

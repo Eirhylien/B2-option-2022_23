@@ -86,10 +86,9 @@
         <h1><span>Jouer ?</span> C'est si simple</h1>
         <div class="grid-container">
             <div class="grid-item item-1">
-                <!-- style="background-color: @grey;" -->
                 <p class="title">Uno</p>
                 <img src="../../images/img_grid_1.png" alt="">
-                <a href="#" class="btn-details-jeu">
+                <a href="./detailsJeux.php" class="btn-details-jeu">
                     <p>Détails</p>
                     <i class="uil uil-arrow-right"></i>
                 </a>
@@ -97,7 +96,7 @@
             <div class="grid-item item-2">
                 <p class="title">Dobble</p>
                 <img src="../../images/img_grid_2.png" alt="">
-                <a href="#" class="btn-details-jeu">
+                <a href="./detailsJeux.php" class="btn-details-jeu">
                     <p>Détails</p>
                     <i class="uil uil-arrow-right"></i>
                 </a>
@@ -106,7 +105,7 @@
             <div class="grid-item item-3">
                 <p class="title">Blanc Manger Coco</p>
                 <img src="../../images/img_grid_3.png" alt="">
-                <a href="#" class="btn-details-jeu">
+                <a href="./detailsJeux.php" class="btn-details-jeu">
                     <p>Détails</p>
                     <i class="uil uil-arrow-right"></i>
                 </a>
@@ -115,7 +114,7 @@
                 <p class="title">Bonne Paye</p>
                 <div class="long-part-placement">
                     <img src="../../images/img_grid_4.png" alt="">
-                    <a href="#" class="long-btn-details-jeu">
+                    <a href="./detailsJeux.php" class="long-btn-details-jeu">
                         <p>Détails</p>
                         <i class="uil uil-arrow-right"></i>
                     </a>
@@ -124,7 +123,7 @@
             <div class="grid-item item-5">
                 <p class="title">Bataille</p>
                 <img src="../../images/img_grid_5.png" alt="">
-                <a href="#" class="btn-details-jeu">
+                <a href="./detailsJeux.php" class="btn-details-jeu">
                     <p>Détails</p>
                     <i class="uil uil-arrow-right"></i>
                 </a>
@@ -132,7 +131,7 @@
             <div class="grid-item item-6">
                 <p class="title">Domino</p>
                 <img src="../../images/img_grid_6.png" alt="">
-                <a href="#" class="btn-details-jeu">
+                <a href="./detailsJeux.php" class="btn-details-jeu">
                     <p>Détails</p>
                     <i class="uil uil-arrow-right"></i>
                 </a>
@@ -141,7 +140,7 @@
                 <p class="title">Destin</p>
                 <div class="long-part-placement">
                     <img src="../../images/img_grid_7.png" alt="">
-                    <a href="#" class="long-btn-details-jeu">
+                    <a href="./detailsJeux.php" class="long-btn-details-jeu">
                         <p>Détails</p>
                         <i class="uil uil-arrow-right"></i>
                     </a>

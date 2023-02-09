@@ -44,10 +44,15 @@ a {
   nav {
     width: 100%;
     height: 60px;
+    background: white;
+    position: fixed;
+    z-index: 100;
+  }
+  main {
+    padding-top: 60px;
   }
   footer {
     width: 100%;
-    margin-top: 140px;
   }
   footer .footer-haut .up {
     display: flex;
@@ -468,6 +473,7 @@ a {
   }
   .btn-grid {
     margin-top: 80px;
+    margin-bottom: 140px;
     text-align: center;
   }
   .btn-grid a {
@@ -477,15 +483,294 @@ a {
     background-color: #f5f5f5;
     border-radius: 96px;
   }
+  .details-jeux {
+    display: block;
+  }
+  .details-jeux .slide-jeux {
+    width: 100%;
+  }
+  .details-jeux .slide-jeux .slider {
+    position: relative;
+    width: 100%;
+    background: #add4ff;
+  }
+  .details-jeux .slide-jeux .slider .myslider {
+    height: 655px;
+    display: none;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  .details-jeux .slide-jeux .slider .slider_details {
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+  }
+  .details-jeux .slide-jeux .slider .slider_title,
+  .details-jeux .slide-jeux .slider .slider_dispo {
+    color: #000;
+    font-size: 16px;
+    width: 200%;
+  }
+  .details-jeux .slide-jeux .slider .slider_nom {
+    color: #000;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px 0;
+    width: 200%;
+  }
+  .details-jeux .slide-jeux .slider .slide_btn {
+    color: #000;
+    font-weight: bold;
+    padding: 12px 60px;
+    background: white;
+    border-radius: 20px;
+    margin-left: 180px;
+    transform: scale(0.9);
+    position: relative;
+    left: -40px;
+  }
+  .details-jeux .slide-jeux .slider .slider_img {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    height: 70%;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider_position {
+    position: relative;
+    left: -5%;
+    bottom: 400px;
+    z-index: 100;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider {
+    display: flex;
+    align-items: center;
+    transform: rotate(90deg);
+  }
+  .details-jeux .slide-jeux .slider .prev,
+  .details-jeux .slide-jeux .slider .next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+  }
+  .details-jeux .slide-jeux .slider .prev {
+    margin-right: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .prev.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .next {
+    margin-left: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .next.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .dot {
+    width: 24px;
+    height: 4px;
+    background: white;
+    opacity: 0.6;
+    border-radius: 4px;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .active,
+  .details-jeux .slide-jeux .slider .dotsbox .dot:hover {
+    background-color: #404040;
+    opacity: 1;
+  }
+  .details-jeux .desc-jeux {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  .details-jeux .desc-jeux .description {
+    width: 80%;
+  }
+  .details-jeux .desc-jeux .title-desc {
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .details-jeux .desc-jeux .texte-desc {
+    color: #000;
+    font-size: 18px;
+  }
+  .details-jeux .desc-jeux .texte-desc:nth-child(2) {
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir {
+    width: 80%;
+    border-top: 1.5px solid #000;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    margin: 30px 0 0 0;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir .title-savoir {
+    color: #000;
+    font-weight: 600;
+    width: 50%;
+  }
+  .details-jeux .desc-jeux .bon-savoir .desc-savoir {
+    color: #000;
+    font-size: 16px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block {
+    width: 80%;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .title-dispo {
+    color: #000;
+    font-weight: 600;
+    width: 50%;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .block-etat {
+    display: flex;
+    align-items: flex-start;
+    width: 50%;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .details-etat {
+    padding-left: 10px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .subtitle-etat {
+    font-size: 18px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .texte-etat {
+    font-size: 14px;
+  }
+  .details-jeux .desc-jeux .block-lookbook {
+    width: 80%;
+    margin: 30px 0 80px 0;
+  }
+  .details-jeux .desc-jeux .block-lookbook img {
+    width: 100%;
+  }
+  .contact-block h1 {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .contact-block .title-contact {
+    font-size: 44px;
+    color: #380a0a;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .contact-block .header-formulaire {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    line-height: 40px;
+    margin-top: 6rem;
+    margin-left: 5rem;
+  }
+  .contact-block .block-form {
+    width: 70%;
+    background-color: yellow;
+    margin-top: 44px;
+    margin-left: 5rem;
+  }
+  .contact-block .flex-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-block .input-label {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-block .nom {
+    width: 47%;
+  }
+  .contact-block .nom input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .mail {
+    width: 47%;
+  }
+  .contact-block .mail input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .message {
+    padding-top: 20px;
+  }
+  .contact-block .message textarea {
+    border: 1px solid #7b2c30;
+    resize: vertical;
+    margin-top: 10px;
+    outline: none;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  .contact-block .btn-form {
+    border: none;
+    background-color: #7b2c30;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    width: 280px;
+    height: 44px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+  }
 }
 @media (min-width: 960px) and (max-width: 1280px) {
   nav {
     width: 100%;
     height: 60px;
+    background: white;
+    position: fixed;
+    z-index: 100;
+  }
+  main {
+    padding-top: 60px;
   }
   footer {
     width: 100%;
-    margin-top: 140px;
   }
   footer .footer-haut .up {
     display: flex;
@@ -918,6 +1203,7 @@ a {
   }
   .btn-grid {
     margin-top: 80px;
+    margin-bottom: 140px;
     text-align: center;
   }
   .btn-grid a {
@@ -927,15 +1213,324 @@ a {
     background-color: #f5f5f5;
     border-radius: 96px;
   }
+  .details-jeux {
+    display: flex;
+    align-items: center;
+  }
+  .details-jeux .slide-jeux {
+    width: 60%;
+  }
+  .details-jeux .slide-jeux .slider {
+    position: relative;
+    width: 100%;
+    background: #add4ff;
+  }
+  .details-jeux .slide-jeux .slider .myslider {
+    height: 655px;
+    display: none;
+    overflow: hidden;
+  }
+  .details-jeux .slide-jeux .slider .slider_details {
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    margin-top: 170px;
+  }
+  .details-jeux .slide-jeux .slider .slider_title,
+  .details-jeux .slide-jeux .slider .slider_dispo {
+    color: #000;
+    font-size: 18px;
+  }
+  .details-jeux .slide-jeux .slider .slider_nom {
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  .details-jeux .slide-jeux .slider .slide_btn {
+    color: #000;
+    font-weight: bold;
+    padding: 12px 60px;
+    background: white;
+    border-radius: 20px;
+    margin-left: 180px;
+  }
+  .details-jeux .slide-jeux .slider .slider_img {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    height: 70%;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider_position {
+    position: relative;
+    left: -69%;
+    bottom: 400px;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider {
+    display: flex;
+    align-items: center;
+    transform: rotate(90deg);
+  }
+  .details-jeux .slide-jeux .slider .prev,
+  .details-jeux .slide-jeux .slider .next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+  }
+  .details-jeux .slide-jeux .slider .prev {
+    margin-right: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .prev.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .next {
+    margin-left: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .next.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .dot {
+    width: 24px;
+    height: 4px;
+    background: white;
+    opacity: 0.6;
+    border-radius: 4px;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .active,
+  .details-jeux .slide-jeux .slider .dotsbox .dot:hover {
+    background-color: #404040;
+    opacity: 1;
+  }
+  .details-jeux .desc-jeux {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .details-jeux .desc-jeux .description {
+    width: 80%;
+  }
+  .details-jeux .desc-jeux .title-desc {
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .details-jeux .desc-jeux .texte-desc {
+    color: #000;
+    font-size: 15px;
+  }
+  .details-jeux .desc-jeux .texte-desc:nth-child(2) {
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir {
+    width: 80%;
+    border-top: 1.5px solid #000;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    margin: 30px 0 0 0;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir .title-savoir {
+    color: #000;
+    font-weight: 600;
+    width: 50%;
+  }
+  .details-jeux .desc-jeux .bon-savoir .desc-savoir {
+    color: #000;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block {
+    width: 80%;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .title-dispo {
+    color: #000;
+    font-weight: 600;
+    width: 40%;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .block-etat {
+    display: flex;
+    align-items: flex-start;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .details-etat {
+    padding-left: 10px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .subtitle-etat {
+    font-size: 18px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .texte-etat {
+    font-size: 14px;
+  }
+  .details-jeux .desc-jeux .block-lookbook {
+    width: 80%;
+    margin-top: 30px;
+  }
+  .details-jeux .desc-jeux .block-lookbook img {
+    width: 100%;
+  }
+  .contact-block h1 {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .contact-block .title-contact {
+    font-size: 44px;
+    color: #380a0a;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .contact-block .header-formulaire {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    line-height: 40px;
+    margin-top: 6rem;
+    margin-left: 20rem;
+  }
+  .contact-block .block-form {
+    width: 50%;
+    margin-top: 44px;
+    margin-left: 20rem;
+  }
+  .contact-block .flex-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-block .input-label {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-block .nom {
+    width: 47%;
+  }
+  .contact-block .nom input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .mail {
+    width: 47%;
+  }
+  .contact-block .mail input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .message {
+    padding-top: 20px;
+  }
+  .contact-block .message textarea {
+    border: 1px solid #7b2c30;
+    resize: vertical;
+    margin-top: 10px;
+    outline: none;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  .contact-block .btn-form {
+    border: none;
+    background-color: #7b2c30;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    width: 280px;
+    height: 44px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+  }
 }
 @media (min-width: 1280px) {
   nav {
     width: 100%;
     height: 80px;
+    background: white;
+    position: fixed;
+    z-index: 100;
+  }
+  .navigation {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navigation .nav-select {
+    font-weight: 600;
+    opacity: 1;
+  }
+  .navigation .logo {
+    color: #380a0a;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .navigation ul {
+    display: flex;
+    align-items: center;
+  }
+  .navigation li {
+    list-style: none;
+    font-size: 20px;
+    margin: 0 14px;
+  }
+  .navigation li:nth-child(3) {
+    padding: 4px 12px;
+    background: #86242d;
+    border-radius: 5px;
+  }
+  .navigation li a {
+    color: #380a0a;
+    opacity: 0.6;
+  }
+  .navigation li .btn-link {
+    color: white;
+    opacity: 1;
+  }
+  .navigation li i {
+    font-size: 24px;
+    opacity: 1;
+  }
+  main {
+    padding-top: 80px;
   }
   footer {
     width: 100%;
-    margin-top: 140px;
   }
   footer .footer-haut .up {
     display: flex;
@@ -1030,49 +1625,6 @@ a {
     align-items: center;
     justify-content: center;
     color: #380a0a;
-  }
-  .navigation {
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .navigation .nav-select {
-    font-weight: 600;
-    opacity: 1;
-  }
-  .navigation .logo {
-    color: #380a0a;
-    font-weight: bold;
-    font-size: 24px;
-  }
-  .navigation ul {
-    display: flex;
-    align-items: center;
-  }
-  .navigation li {
-    list-style: none;
-    font-size: 20px;
-    margin: 0 14px;
-  }
-  .navigation li:nth-child(3) {
-    padding: 4px 12px;
-    background: #86242d;
-    border-radius: 5px;
-  }
-  .navigation li a {
-    color: #380a0a;
-    opacity: 0.6;
-  }
-  .navigation li .btn-link {
-    color: white;
-    opacity: 1;
-  }
-  .navigation li i {
-    font-size: 24px;
-    opacity: 1;
   }
   .slider {
     position: relative;
@@ -1411,6 +1963,7 @@ a {
   }
   .btn-grid {
     margin-top: 80px;
+    margin-bottom: 140px;
     text-align: center;
   }
   .btn-grid a {
@@ -1419,5 +1972,265 @@ a {
     padding: 15px 60px;
     background-color: #f5f5f5;
     border-radius: 96px;
+  }
+  .details-jeux {
+    display: flex;
+    align-items: center;
+  }
+  .details-jeux .slide-jeux {
+    width: 60%;
+  }
+  .details-jeux .slide-jeux .slider {
+    position: relative;
+    width: 100%;
+    background: #add4ff;
+  }
+  .details-jeux .slide-jeux .slider .myslider {
+    height: 655px;
+    display: none;
+    overflow: hidden;
+  }
+  .details-jeux .slide-jeux .slider .slider_details {
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    margin-top: 220px;
+  }
+  .details-jeux .slide-jeux .slider .slider_title,
+  .details-jeux .slide-jeux .slider .slider_dispo {
+    color: #000;
+    font-size: 18px;
+  }
+  .details-jeux .slide-jeux .slider .slider_nom {
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  .details-jeux .slide-jeux .slider .slide_btn {
+    color: #000;
+    font-weight: bold;
+    padding: 12px 60px;
+    background: white;
+    border-radius: 20px;
+    margin-left: 180px;
+  }
+  .details-jeux .slide-jeux .slider .slider_img {
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    height: 66%;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider_position {
+    position: relative;
+    left: -67%;
+    bottom: 400px;
+  }
+  .details-jeux .slide-jeux .slider .navigation_slider {
+    display: flex;
+    align-items: center;
+    transform: rotate(90deg);
+  }
+  .details-jeux .slide-jeux .slider .prev,
+  .details-jeux .slide-jeux .slider .next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+  }
+  .details-jeux .slide-jeux .slider .prev {
+    margin-right: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .prev.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .next {
+    margin-left: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .details-jeux .slide-jeux .slider .next.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .dot {
+    width: 24px;
+    height: 4px;
+    background: white;
+    opacity: 0.6;
+    border-radius: 4px;
+    margin: 0 3px;
+    cursor: pointer;
+  }
+  .details-jeux .slide-jeux .slider .dotsbox .active,
+  .details-jeux .slide-jeux .slider .dotsbox .dot:hover {
+    background-color: #404040;
+    opacity: 1;
+  }
+  .details-jeux .desc-jeux {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .details-jeux .desc-jeux .description {
+    width: 70%;
+  }
+  .details-jeux .desc-jeux .title-desc {
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .details-jeux .desc-jeux .texte-desc {
+    color: #000;
+  }
+  .details-jeux .desc-jeux .texte-desc:nth-child(2) {
+    padding: 30px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir {
+    width: 70%;
+    border-top: 1.5px solid #000;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    margin: 30px 0 0 0;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .bon-savoir .title-savoir {
+    color: #000;
+    font-weight: 600;
+    width: 30%;
+  }
+  .details-jeux .desc-jeux .bon-savoir .desc-savoir {
+    color: #000;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block {
+    width: 70%;
+    border-bottom: 1.5px solid #000;
+    display: flex;
+    padding: 20px 0;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .title-dispo {
+    color: #000;
+    font-weight: 600;
+    width: 30%;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .block-etat {
+    display: flex;
+    align-items: flex-start;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .details-etat {
+    padding-left: 10px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .subtitle-etat {
+    font-size: 18px;
+  }
+  .details-jeux .desc-jeux .dispo-details-block .texte-etat {
+    font-size: 14px;
+  }
+  .details-jeux .desc-jeux .block-lookbook {
+    width: 70%;
+    margin-top: 30px;
+  }
+  .details-jeux .desc-jeux .block-lookbook img {
+    width: 100%;
+  }
+  .contact-block h1 {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .contact-block .title-contact {
+    font-size: 44px;
+    color: #380a0a;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .contact-block .header-formulaire {
+    font-size: 24px;
+    color: #380a0a;
+    font-weight: 550;
+    line-height: 40px;
+    margin-top: 6rem;
+    margin-left: 20rem;
+  }
+  .contact-block .block-form {
+    width: 45%;
+    margin-top: 44px;
+    margin-left: 20rem;
+  }
+  .contact-block .flex-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-block .input-label {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-block .nom {
+    width: 47%;
+  }
+  .contact-block .nom input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .mail {
+    width: 47%;
+  }
+  .contact-block .mail input[type="text"] {
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #7b2c30;
+    outline: none;
+    padding-left: 10px;
+  }
+  .contact-block .message {
+    padding-top: 20px;
+  }
+  .contact-block .message textarea {
+    border: 1px solid #7b2c30;
+    resize: vertical;
+    margin-top: 10px;
+    outline: none;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  .contact-block .btn-form {
+    border: none;
+    background-color: #7b2c30;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    width: 280px;
+    height: 44px;
+    margin-top: 20px;
+    margin-bottom: 200px;
   }
 }
