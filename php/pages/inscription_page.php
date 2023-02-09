@@ -17,7 +17,7 @@
 
 
     <h1> TEST CONNEXION DB</h1>
-    
+
 
 
     inscription text
@@ -42,5 +42,3 @@
         </div>
     </form>
 </body>
-
-</html>
