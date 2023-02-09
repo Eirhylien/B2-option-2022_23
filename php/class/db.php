@@ -57,7 +57,7 @@
          * @return void
          */
         public function IsExistEmail($user){
-            $sqlQuery = "SELECT * FROM `user` where user.email=".$user->email;
+            $sqlQuery = "SELECT * FROM `user` where email='".$user->email."'";
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $resultDB = $usersStatement->fetchAll();

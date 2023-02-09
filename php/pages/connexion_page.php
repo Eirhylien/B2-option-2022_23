@@ -19,7 +19,7 @@
 <a href="/php/pages/index.php">back </a>
 
    conexion text
-   <form method="post" action="connexion.php" >
+   <form method="post" action="./connexion.php" >
         <div class="form-mdp">
             <input class="email" name="email" placeholder="email">
         </div>

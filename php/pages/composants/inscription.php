@@ -29,4 +29,5 @@
 </head>
 
 <body></body>
+
 <?php include("./composants/navigation.php") ?>
