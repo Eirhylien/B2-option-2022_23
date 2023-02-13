@@ -2078,12 +2078,15 @@ a {
         }
 
         img {
+          transition: transform  0.7s;
           height: 60%;
           transition: all 0.2s ease;
           padding-top: 30px;
         }
+        
 
         .btn-details-jeu {
+        
           display: flex;
           align-items: center;
           width: 24%;
@@ -2121,6 +2124,22 @@ a {
           }
         }
       }
+      .grid-item:hover{
+        img{
+            
+            transform: scale(1.2);
+        }
+        /*
+        .btn-details-jeu {
+          transition : 0.7s;
+          display: flex;
+          align-items: center;
+          width: 24%;
+          margin: 11px auto 0 auto;
+          position: relative;
+          z-index: 0;
+      }*/
+    }
 
       .item-1 {
         background-color: @grey;
