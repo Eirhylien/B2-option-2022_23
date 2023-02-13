@@ -8,9 +8,10 @@
         public $email;
         public $mdp;
         public $etablissement;
+        public $role;
 
 
-        public function __construct($id,$nom,$prenom,$username,$email,$mdp,$etablissement){
+        public function __construct($id,$nom,$prenom,$username,$email,$mdp,$etablissement,$role){
             $this->id=$id;
             $this->nom=$nom;
             $this->prenom=$prenom;
@@ -18,6 +19,7 @@
             $this->email=$email;
             $this->mdp=$mdp;
             $this->etablissement=$etablissement;
+            $this->role=$role;
         }
     }
 ?>
