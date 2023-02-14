@@ -195,6 +195,7 @@
                 //pour chaque jeu dans résultat
                 foreach($resultDB as $jeu) {
                     $jeux = new Jeux();
+                    $jeux -> id= $jeu['id'];
                     $jeux->remarque = $jeu['remarque'];
                     $jeux->etat =  $jeu['etat'];
                     $jeux->dispo =  $jeu['dispo'];
@@ -370,7 +371,7 @@
          * @return fdj
          */
         public function getFdjByJeux($jeux){
-            $sqlQuery = "SELECT fdj.id,fdj.nom,fdp.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$jeux->fdj_id;
+            $sqlQuery = "SELECT fdj.id,fdj.nom,fdj.description,fdj.date,fdj.img FROM `fdj`,`jeux` where fdj.id=".$jeux->fdj_id;
             $usersStatement = $this->connexiondb->prepare($sqlQuery);
             $usersStatement->execute();
             $fdjs = $usersStatement->fetchAll();
