@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+frf<!DOCTYPE html>
 <html lang="fr">
 
 <head>
