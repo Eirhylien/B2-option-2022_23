@@ -13,8 +13,8 @@ function connexion($servername, $username, $password, $dbname) {
 
 
 
-
-
+try {
+    
 $connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2iLPyJ5kRM4h", "dbs9782335");
 
 
@@ -190,6 +190,10 @@ COMMIT;
 $requête = $connexiondb->prepare($sqlRequete);
 $requête->execute();
 $resultDB = $requête->fetchAll();
+
+} catch(PDOException $e) {
+    echo $sqlRequete . "<br>" . $e->getMessage();
+  }
 
 
 function debug_to_console($data) {
