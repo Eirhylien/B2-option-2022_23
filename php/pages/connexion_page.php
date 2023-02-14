@@ -15,11 +15,11 @@
 <body>
 
 
-<h1> TEST CONNEXION DB</h1>
-<a href="/php/pages/index.php">back </a>
+    <h1> TEST CONNEXION DB</h1>
+    <a href="/php/pages/index.php">back</a>
 
-   conexion text
-   <form method="post" action="./connexion.php" >
+    conexion text
+    <form method="post" action="./connexion.php">
         <div class="form-mdp">
             <input class="email" name="email" placeholder="email">
         </div>
