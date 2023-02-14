@@ -19,12 +19,28 @@ $connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2
 
 
 
-$sqlRequete = "select * from user
+$sqlRequete = "insert 
 ";
 
 $requete = $connexiondb->prepare($sqlRequete);
 $requete->execute();
 $resultDB = $requete->fetchAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 } catch(PDOException $e) {
     echo $sqlRequete . "<br>" . $e->getMessage();
