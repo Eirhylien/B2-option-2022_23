@@ -3406,6 +3406,11 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: 0.3s;
+  }
+  .add-game .add-photos .block-files-input .label-file:hover {
+    background-color: #7b2c30;
+    color: white;
   }
   .add-game .add-photos .block-files-input .input-file {
     display: none;
