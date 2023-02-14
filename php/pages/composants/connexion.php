@@ -3,7 +3,7 @@
     require_once("../class/db.php");
     require_once("../class/User.php");
     $db = new Database();
-    $user = new User(1,"test","test","test",$_POST["email"],$_POST["mdp"],false);
+    $user = new User(1,"test","test","test",$_POST["email"],$_POST["mdp"],"false",0);
  
     $verif=$db->IsExistEmail($user);
     

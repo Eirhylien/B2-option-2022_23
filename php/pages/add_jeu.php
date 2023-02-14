@@ -15,15 +15,26 @@
 </head>
 
 <body>
-    <?php include("./composants/navigation.php") ?>
-    <main>
-        <h1 class="title-lister">Ajouter ton jeu</h1>
-        <?php include("./composants/form_add_jeu.php") ?>
-        <div class="block-add-btn">
-            <a href="#">Ajouter</a>
-        </div>
-    </main>
-    <?php include("./composants/footer.php") ?>
+    <?php
+    if ($_SESSION["user"]){
+        echo ('<?php include("./composants/navigation.php") ?>
+        <main>
+            <h1 class="title-lister">Ajouter ton jeu</h1>
+            <?php include("./composants/form_add_jeu.php") ?>
+            <div class="block-add-btn">
+                <a href="#">Ajouter</a>
+            </div>
+        </main>
+        <?php include("./composants/footer.php") ?>
+    </body>');
+    }
+    else {
+        echo ("Merci de vous connecter");
+    }
+
+    ?>
+    
+    
 </body>
 
 </html>
