@@ -6,15 +6,15 @@ function connexion($servername, $username, $password, $dbname) {
         $db = new PDO('mysql:host='. $servername .';dbname='. $dbname .';', $username, $password);
         return $db;
     } catch (PDOException $e) {
-        print "Erreur: " . $e->getMessage() . "<br/>";
+        print ("Erreur: " . $e->getMessage() . "<br/>");
         die;
     }
 }
 
 
 
-
-
+try {
+    
 $connexiondb = connexion("db5011603677.hosting-data.io:3306", "dbu913389", "NsU2iLPyJ5kRM4h", "dbs9782335");
 
 
@@ -37,6 +37,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 $requête = $connexiondb->prepare($sqlRequete);
 $requête->execute();
 $resultDB = $requête->fetchAll();
+
+} catch(PDOException $e) {
+    echo $sqlRequete . "<br>" . $e->getMessage();
+  }
 
 
 function debug_to_console($data) {
