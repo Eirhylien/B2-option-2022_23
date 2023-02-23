@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifie ton jeu</title>
+    <title>Modifier un jeu</title>
 
     <!-- Import CSS -->
     <link rel="stylesheet" href="../../styles/style.css">
@@ -17,11 +17,10 @@
 <body>
     <?php include("./composants/navigation.php") ?>
     <main>
-        <h1 class="title-lister">Modifie ton jeu</h1>
-        <?php include("./composants/form_lister_jeu.php") ?>
+        <h1 class="title-lister">Modifier ton jeu</h1>
+        <?php include("./composants/form_add_jeu.php") ?>
         <div class="block-add-btn">
             <a href="#">Modifier</a>
-            <a class="delete-btn" href="#">Supprimer</a>
         </div>
     </main>
     <?php include("./composants/footer.php") ?>
