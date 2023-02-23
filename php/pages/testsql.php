@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 ";
 
-$requête = $connexiondb->prepare($sqlRequete);
-$requête->execute();
-$resultDB = $requête->fetchAll();
+$requete = $connexiondb->prepare($sqlRequete);
+$requete->execute();
+$resultDB = $requete->fetchAll();
 
 } catch(PDOException $e) {
     echo $sqlRequete . "<br>" . $e->getMessage();
